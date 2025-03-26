@@ -1,6 +1,6 @@
-# Gmail Categorization Pipeline
+# Gmail ETL Categorization Pipeline
 
-This project automates the categorization of Gmail messages using a machine learning model. The pipeline is containerized using Docker for easy deployment and reproducibility.
+This project automates the extraction, transformation, and categorization of Gmail messages using a machine learning model. The ETL pipeline is containerized using Docker for easy deployment and reproducibility.
 
 ## Table of Contents
 - [Overview](#overview)
@@ -13,12 +13,12 @@ This project automates the categorization of Gmail messages using a machine lear
 - [License](#license)
 
 ## Overview
-This project extracts emails from Gmail, processes them using a large language model (LLM), categorizes them, and saves the results into a structured CSV file.
+This project follows the ETL (Extract, Transform, Load) pipeline structure to process Gmail emails. It extracts emails using the Gmail API, transforms and categorizes them using a large language model (LLM), and loads the results into a structured CSV file.
 
 ## Features
 - Extracts emails using the Gmail API
-- Processes and categorizes emails using an LLM model
-- Saves categorized data into a CSV file
+- Transforms and categorizes emails using an LLM model
+- Loads categorized data into a CSV file
 - Containerized using Docker for seamless deployment
 
 ## Prerequisites
@@ -28,8 +28,8 @@ This project extracts emails from Gmail, processes them using a large language m
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd <repository-name>
+   git clone https://github.com/amiralisahraei/gmail-etl-categorization.git
+   cd gmail-etl-categorization
    ```
 
 2. Set up Gmail API credentials:
@@ -38,13 +38,13 @@ This project extracts emails from Gmail, processes them using a large language m
 
 3. Build the Docker container:
    ```bash
-   docker build -t gmail-categorization .
+   docker build -t gmail-etl-categorization .
    ```
 
 ## Usage
 Run the container:
 ```bash
-docker run --rm -v $(pwd):/app gmail-categorization
+docker run --rm -v $(pwd):/app gmail-etl-categorization
 ```
 The processed emails will be stored in `output/emails_categorized.csv`.
 
@@ -55,11 +55,11 @@ The processed emails will be stored in `output/emails_categorized.csv`.
 ├── src
 │   ├── app.py                 # Main application entry point
 │   ├── authenticate_gmail.py  # Handles Gmail API authentication
-│   ├── dag.py                 # Workflow orchestration (e.g., Airflow DAG)
-│   ├── extract.py             # Extracts emails from Gmail
-│   ├── load.py                # Saves processed data (e.g., to CSV/database)
+│   ├── extract.py             # Extracts emails from Gmail (ETL - Extract)
+│   ├── transform.py           # Processes/categorizes emails (ETL - Transform)
+│   ├── load.py                # Saves processed data to CSV/database (ETL - Load)
 │   ├── sentiment_analysis.py  # Analyzes email sentiment (optional)
-│   └── transform.py           # Processes/categorizes emails
+│   ├── dag.py                 # Workflow orchestration for Airflow (if needed)
 ├── requirements.txt
 ├── README.md
 ```
