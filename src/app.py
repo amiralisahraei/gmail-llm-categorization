@@ -5,7 +5,7 @@ from extract import list_emails
 from load import load_data_into_csv, add_sentiment_result
 
 
-def process_emails(data_path='email_data.csv'):
+def process_emails(data_path='../output/email_data.csv'):
     """Authenticate Gmail, extract emails, load data into CSV, and add sentiment results."""
     service = authenticate_gmail()
     email_data = list_emails(service)
