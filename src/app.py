@@ -1,3 +1,4 @@
+import os
 import time
 import datetime
 from authenticate_gmail import authenticate_gmail
@@ -5,11 +6,19 @@ from extract import list_emails
 from load import load_data_into_csv, add_sentiment_result
 
 
-def process_emails(data_path='../output/email_data.csv'):
+# Ensure the output directory exists
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Moves one level up
+OUTPUT_DIR = os.path.join(BASE_DIR, "output")
+os.makedirs(OUTPUT_DIR, exist_ok=True)  # Create if it doesn’t exist
+
+# Use the correct path
+saved_data_path = os.path.join(OUTPUT_DIR, "email_data.csv")
+
+def process_emails(data_path):
     """Authenticate Gmail, extract emails, load data into CSV, and add sentiment results."""
     service = authenticate_gmail()
     email_data = list_emails(service)
-    load_data_into_csv(email_data)
+    load_data_into_csv(email_data, data_path)
     add_sentiment_result(data_path)
 
 
@@ -24,7 +33,7 @@ def main():
     """Run the email processing task in a loop with a delay."""
     while True:
         log_current_time()
-        process_emails()
+        process_emails(saved_data_path)
         time.sleep(300)  # Wait for 5 minutes (300 seconds)
 
 

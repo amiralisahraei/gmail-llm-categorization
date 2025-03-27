@@ -9,11 +9,10 @@ from googleapiclient.errors import HttpError
 # If modifying the scope, delete the token.pickle file.
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 
-# Token file for storing user credentials
-TOKEN_FILE = '../token.pickle'
 
-# Path to your credentials.json file
-CREDENTIALS_FILE = '../credentials.json'
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Moves one level up
+TOKEN_FILE = os.path.join(BASE_DIR, "token.pickle")
+CREDENTIALS_FILE = os.path.join(BASE_DIR, "credentials.json")
 
 def authenticate_gmail():
     """Authenticate the user and get the Gmail API service."""

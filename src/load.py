@@ -2,7 +2,7 @@ from datetime import date
 import pandas as pd
 from sentiment_analysis import model_response
 
-def load_data_into_csv(data, output_path='../output/email_data.csv'):
+def load_data_into_csv(data, output_path):
     """Convert the provided data into a DataFrame and save it as a CSV file."""
     df = pd.DataFrame(data)
     df.to_csv(output_path, index=False)
