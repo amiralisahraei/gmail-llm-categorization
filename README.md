@@ -1,5 +1,5 @@
 
-# Gmail ETL Categorization Pipeline
+# Gmail ETL Categorization
 
 This project automates the extraction, transformation, and categorization of Gmail messages using a machine learning model. The ETL pipeline is containerized using Docker for easy deployment and reproducibility.
 
